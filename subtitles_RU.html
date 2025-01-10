@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор команды tellraw для Minecraft 1.21.1</title>
+    <link rel="stylesheet" href="style.css"> <!-- Подключение стилей -->
+</head>
+<body>
+
+<h1>Генератор команды tellraw для Minecraft 1.21.1</h1>
+
+<div id="textInputsContainer" style="text-align: center;">
+    <div class="text-input">
+        <input type="text" class="userText" placeholder="Введите текст сообщения..." style="border-radius: 15px;">
+        <button onclick="toggleColorPicker(this)">Цвет</button>
+        <input type="color" class="colorPicker" value="#ff0000" onchange="updateColor(this)">
+        <input type="text" class="optionalLink" placeholder="Введите ссылку (необязательно)" style="width: 300px; margin-top: 10px; border-radius: 15px;">
+        <button onclick="addNewLineWithNewline()">\\n</button>
+    </div>
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+    <label for="targetSelect">Кому отправить сообщение:</label>
+    <select id="targetSelect" style="display: block; margin: 0 auto;">
+        <option value="@a">Всем игрокам (@a)</option>
+        <option value="@p">Ближайшему игроку (@p)</option>
+        <option value="@s">Себе (@s)</option>
+    </select>
+    <br>
+    <label for="customTarget">Или введите имя игрока:</label>
+    <input type="text" id="customTarget" placeholder="Имя игрока..." style="width: 300px; margin-top: 10px; border-radius: 15px;">
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+    <!-- Кнопки для добавления новой строки и генерации команды в одной строке -->
+    <button onclick="addNewLine()">Добавить новую строку</button>
+    <button onclick="generateCommand()">Сгенерировать команду</button>
+</div>
+
+<!-- Кнопки форматирования под полями ввода -->
+<div style="text-align: center; margin-top: 20px;">
+    <button onclick="formatText('bold')">Жирный</button>
+    <button onclick="formatText('italic')">Курсив</button>
+    <button onclick="formatText('underline')">Подчеркнутый</button>
+    <button onclick="formatText('strikethrough')">Зачеркнутый</button>
+    <button onclick="formatText('obfuscated')">Моноширинный</button>
+</div>
+
+<h2 style="text-align: center;">Сгенерированная команда:</h2>
+<pre id="output" style="text-align: center;"></pre>
+
+<!-- Информация о создателе -->
+<div style="text-align: center; margin-top: 40px;">
+    <p style="font-size: 18px;">Создатель: Perplexity и создатель карты "Перекрестие"</p>
+</div>
+
+<!-- Кнопка для перехода на английскую версию -->
+<div style="text-align: center; margin-top: 20px;">
+    <a href="subtitles_EN.html"><button>Перейти на английскую версию</button></a>
+	<a href="vilagers_RU.html"><button>Перейти на Генератор кастомных жителей для Minecraft</button></a>
+</div>
+
+<script>
+// Функция для переключения видимости выбора цвета
+function toggleColorPicker(button) {
+    const colorPicker = button.nextElementSibling;
+    colorPicker.click(); // Открываем выбор цвета при нажатии на кнопку
+}
+
+function updateColor(colorInput) {
+    const userText = colorInput.parentElement.querySelector('.userText');
+    userText.style.color = colorInput.value; // Обновляем цвет текста в поле ввода
+}
+
+function formatText(style) {
+    const userText = document.querySelector('.userText');
+
+    switch (style) {
+        case 'bold':
+            userText.value = `§l${userText.value}§r`; // Жирный текст
+            break;
+        case 'italic':
+            userText.value = `§o${userText.value}§r`; // Курсив
+            break;
+        case 'underline':
+            userText.value = `§n${userText.value}§r`; // Подчеркнутый текст
+            break;
+        case 'strikethrough':
+            userText.value = `§m${userText.value}§r`; // Зачеркнутый текст
+            break;
+        case 'obfuscated':
+            userText.value = `§k${userText.value}§r`; // Моноширинный текст
+            break;
+    }
+}
+
+function addNewLine() {
+    const container = document.getElementById('textInputsContainer');
+    const newLine = document.createElement('div');
+    newLine.classList.add('text-input');
+
+    newLine.innerHTML = `
+        <input type='text' class='userText' placeholder='Введите текст сообщения...' style='border-radius:15px;'>
+        <button onclick='toggleColorPicker(this)'>Цвет</button>
+        <input type='color' class='colorPicker' value='#ff0000' onchange='updateColor(this)'>
+        <input type='text' class='optionalLink' placeholder='Введите ссылку (необязательно)' style='width:300px;margin-top:10px;border-radius:15px;'>
+        <button onclick='addNewLineWithNewline()'>\\n</button><br/>
+        <button onclick='removeLine(this)' style='color:red;'>✖️ Удалить строку</button><!-- Кнопка для удаления строки -->
+   `;
+
+   container.appendChild(newLine);
+}
+
+function removeLine(button) {
+   const lineToRemove = button.parentElement; // Получаем родительский элемент (всю строку)
+   lineToRemove.remove(); // Удаляем строку
+}
+
+function addNewLineWithNewline() {
+   const inputs = document.querySelectorAll('.userText');
+   if (inputs.length > 0) {
+       const lastInput = inputs[inputs.length - 1];
+       lastInput.value = '\\n' + lastInput.value; // Добавляем \n в начало текста
+   }
+}
+
+function generateCommand() {
+   const targetSelect = document.getElementById('targetSelect');
+   const customTarget = document.getElementById('customTarget').value.trim();
+   
+   let target = targetSelect.value;
+   
+   if (customTarget) {
+       target = customTarget; // Если введено имя игрока, используем его как цель
+   }
+
+   let command = '';
+
+   const inputs = document.querySelectorAll('.text-input');
+
+   inputs.forEach((input) => {
+       const text = input.querySelector('.userText').value;
+       const color =
+           input.querySelector('.colorPicker') ?
+               input.querySelector('.colorPicker').value.slice(1) :
+               'ffffff'; // Убираем '#'
+
+       if (text) {
+           command += `/tellraw ${target} {"text":"${text}","color":"#${color}"}`;
+           const link =
+               input.querySelector('.optionalLink').value;
+           if (link) {
+               command += `,"clickEvent":{"action":"open_url","value":"${link}"}}`;
+           } else {
+               command += `}`;
+           }
+           command += '\n'; // Перенос строки между командами
+       }
+   });
+
+   document.getElementById('output').textContent =
+       command.trim(); // Убираем последний перенос строки
+}
+</script>
+
+</body>
+</html>

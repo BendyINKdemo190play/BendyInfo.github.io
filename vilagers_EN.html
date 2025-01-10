@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Villager Generator for Minecraft</title>
+    <link rel="stylesheet" href="style.css"> <!-- Stylesheet link -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2c2c2c; /* Dark background */
+            color: #fff; /* White text */
+            padding: 20px;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        .trade {
+            margin-bottom: 20px; /* Margin between trades */
+            border: 1px solid #ccc; /* Border around trade */
+            padding: 10px; /* Inner padding */
+            border-radius: 10px; /* Rounded corners */
+            background-color: #444; /* Trade background color */
+        }
+
+        button {
+            margin-top: 10px;
+        }
+
+        a {
+            color: orange; /* Link color */
+        }
+
+        #itemInfo {
+            margin-top: 20px; 
+            border: 1px solid #ccc; 
+            padding: 10px; 
+            display: none; 
+            background-color: #444; /* Info block background color */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Custom Villager Generator for Minecraft</h1>
+
+<div style="text-align: center;">
+    <label for="profession">Profession:</label>
+    <select id="profession">
+        <option value="farmer">Farmer</option>
+        <option value="librarian">Librarian</option>
+        <option value="priest">Priest</option>
+        <option value="smith">Smith</option>
+        <option value="nitwit">Nitwit</option>
+    </select>
+
+    <br><br>
+
+    <label for="level">Level:</label>
+    <input type="number" id="level" value="1" min="1" max="5">
+
+    <br><br>
+
+    <div id="tradesContainer">
+        <div class="trade">
+            <label for="sellItem">Trade Item (Sell):</label>
+            <input type="text" class="sellItem" placeholder="Item ID" required>
+            <label for="sellCount">Quantity:</label>
+            <input type="number" class="sellCount" value="1" min="1">
+
+            <br><br>
+
+            <label for="buyItem1">Trade Item (Buy 1):</label>
+            <input type="text" class="buyItem1" placeholder="Item ID (required)" required>
+            <label for="buyCount1">Quantity:</label>
+            <input type="number" class="buyCount1" value="1" min="1">
+
+            <br><br>
+
+            <label for="buyItem2">Trade Item (Buy 2):</label>
+            <input type="text" class="buyItem2" placeholder="Item ID (optional)">
+            <label for="buyCount2">Quantity:</label>
+            <input type="number" class="buyCount2" value="1" min="1"><br>
+
+            <button onclick="removeTrade(this)">✖️ Remove Trade</button>
+        </div>
+    </div>
+
+    <button onclick="addTrade()">Add Trade</button>
+
+    <br><br>
+
+    <button onclick="generateCommand()">Generate Command</button>
+
+    <h2 style="text-align: center;">Generated Command:</h2>
+    <pre id="output" style="text-align: center;"></pre>
+
+    <!-- Item info block -->
+    <div id="itemInfo">
+        <h3>List of Item IDs</h3>
+        <p>You can find a complete list of item IDs on 
+            <a href="https://minecraft.fandom.com/wiki/Item_IDs" target="_blank">the English wiki</a>.
+        </p>
+    </div>
+
+    <!-- Buttons to navigate to other versions -->
+    <div style="margin-top: 20px;">
+        <a href="vilagers_RU.html"><button>Go to Russian Version</button></a>
+        <a href="subtitles_EN.html"><button>Go to tellraw Command Generator for Minecraft 1.21.1</button></a>
+    </div>
+</div>
+
+<script>
+// Function to load items from a JSON file
+async function loadItems() {
+    const response = await fetch('items.json');
+    const items = await response.json();
+    
+    return items;
+}
+
+// Function to add a new trade
+async function addTrade() {
+    const tradesContainer = document.getElementById('tradesContainer');
+    
+    const newTrade = document.createElement('div');
+    newTrade.classList.add('trade');
+
+    newTrade.innerHTML = `
+        <label for='sellItem'>Trade Item (Sell):</label>
+        <input type='text' class='sellItem' placeholder='Item ID' required>
+        <label for='sellCount'>Quantity:</label>
+        <input type='number' class='sellCount' value='1' min='1'>
+
+        <br><br>
+
+        <label for='buyItem1'>Trade Item (Buy 1):</label>
+        <input type='text' class='buyItem1' placeholder='Item ID (required)' required>
+        <label for='buyCount1'>Quantity:</label>
+        <input type='number' class='buyCount1' value='1' min='1'>
+
+        <br><br>
+
+        <label for='buyItem2'>Trade Item (Buy 2):</label>
+        <input type='text' class='buyItem2' placeholder='Item ID (optional)'>
+        <label for='buyCount2'>Quantity:</label>
+        <input type='number' class='buyCount2' value='1' min='1'><br>
+        
+        <button onclick='removeTrade(this)'>✖️ Remove Trade</button>
+   `;
+
+   tradesContainer.appendChild(newTrade);
+}
+
+// Function to remove a trade
+function removeTrade(button) {
+    const tradeToRemove = button.parentElement; // Get the parent element (trade)
+    tradeToRemove.remove(); // Remove the trade
+}
+
+// Function to generate command
+function generateCommand() {
+    const profession = document.getElementById('profession').value;
+    const level = document.getElementById('level').value;
+
+    let trades = [];
+    
+    const tradesElements = document.querySelectorAll('.trade');
+    
+    tradesElements.forEach(trade => {
+        const sellItem = trade.querySelector('.sellItem').value || 'minecraft:stone'; // Default value
+        const sellCount = trade.querySelector('.sellCount').value;
+
+        const buyItem1 = trade.querySelector('.buyItem1').value || 'minecraft:stone'; // Default value
+        const buyCount1 = trade.querySelector('.buyCount1').value;
+
+        const buyItem2 = trade.querySelector('.buyItem2').value || 'minecraft:stone'; // Default value
+        const buyCount2 = trade.querySelector('.buyCount2').value;
+
+        if (sellItem) {
+            trades.push(`{buy:{id:${buyItem1},Count:${buyCount1}},sell:{id:${sellItem},Count:${sellCount}}}`);
+            
+            if(buyItem2) { // If second item is specified, add it to the trade
+                trades.push(`{buy:{id:${buyItem2},Count:${buyCount2}},sell:{id:${sellItem},Count:${sellCount}}}`);
+            }
+        }
+    });
+
+    let command = `/summon minecraft:villager ~ ~ ~ {VillagerData:{type:plains,profession:${profession},level:${level}},Offers:{Recipes:[${trades.join(',')}]}}}`;
+
+    document.getElementById('output').textContent = command; // Display generated command
+}
+
+// Initialize first trade on page load
+window.onload = () => {
+   addTrade();
+   document.getElementById('itemInfo').style.display = 'block'; // Show item info block
+};
+</script>
+
+</body>
+</html>

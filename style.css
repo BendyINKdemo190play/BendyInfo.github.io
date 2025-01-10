@@ -1,0 +1,72 @@
+/* Общие стили для страницы */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #1e1e1e; /* Темный фон страницы */
+    color: #f0f0f0; /* Светлый текст */
+}
+
+/* Стили для заголовков */
+h1 {
+    color: #ffa500; /* Оранжевый цвет заголовка */
+}
+
+/* Стили для контейнера текстовых полей */
+.text-input {
+    margin-bottom: 10px;
+}
+
+/* Стили для полей ввода текста */
+input[type="text"], select {
+    padding: 10px;
+    width: calc(100% - 22px); /* Учитываем padding и border */
+    max-width: 300px;
+    border: 1px solid #444; /* Темная рамка */
+    border-radius: 5px; /* Скругленные углы */
+    background-color: #333; /* Темный фон полей ввода */
+    color: #f0f0f0; /* Светлый текст в полях ввода */
+}
+
+/* Стили для кнопок */
+button {
+    padding: 10px 15px;
+    margin-right: 10px; /* Отступ между кнопками */
+    border: none;
+    border-radius: 30px; /* Скругленные углы кнопок */
+    background-color: #555; /* Темный фон кнопок */
+    color: #f0f0f0; /* Светлый текст на кнопках */
+    cursor: pointer; /* Курсор в виде руки при наведении */
+    transition: background-color 0.3s; /* Плавный переход цвета фона */
+}
+
+/* Эффект при наведении на кнопки */
+button:hover {
+    background-color: #777; /* Светлее при наведении */
+}
+
+/* Стили для области отображения цвета */
+.colorPickerContainer {
+   display: inline-block;
+   margin-left: 10px;
+}
+
+/* Стили для области вывода команды */
+pre {
+   background-color: #222; /* Темный фон для области вывода команды */
+   padding: 10px;
+   border-radius: 5px; /* Скругленные углы области вывода команды */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    font-family: 'Press Start 2P', cursive; /* Применение пиксельного шрифта */
+}
+
+h1, h2 {
+    font-size: 24px; /* Размер заголовков */
+}
+
+button {
+    font-family: 'Press Start 2P', cursive; /* Применение пиксельного шрифта к кнопкам */
+}

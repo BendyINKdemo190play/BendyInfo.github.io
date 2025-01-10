@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tellraw Command Generator for Minecraft 1.21.1</title>
+    <link rel="stylesheet" href="style.css"> <!-- Подключение стилей -->
+</head>
+<body>
+
+<h1>Tellraw Command Generator for Minecraft 1.21.1</h1>
+
+<div id="textInputsContainer" style="text-align: center;">
+    <div class="text-input">
+        <input type="text" class="userText" placeholder="Enter message text..." style="border-radius: 15px;">
+        <button onclick="toggleColorPicker(this)">Color</button>
+        <input type="color" class="colorPicker" value="#ff0000" onchange="updateColor(this)">
+        <input type="text" class="optionalLink" placeholder="Enter link (optional)" style="width: 300px; margin-top: 10px; border-radius: 15px;">
+        <button onclick="addNewLineWithNewline()">\\n</button>
+    </div>
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+    <label for="targetSelect">Who to send the message to:</label>
+    <select id="targetSelect" style="display: block; margin: 0 auto;">
+        <option value="@a">To all players (@a)</option>
+        <option value="@p">To the nearest player (@p)</option>
+        <option value="@s">To yourself (@s)</option>
+    </select>
+    <br>
+    <label for="customTarget">Or enter player name:</label>
+    <input type="text" id="customTarget" placeholder="Player name..." style="width: 300px; margin-top: 10px; border-radius: 15px;">
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+    <!-- Buttons for adding a new line and generating command in one row -->
+    <button onclick="addNewLine()">Add New Line</button>
+    <button onclick="generateCommand()">Generate Command</button>
+</div>
+
+<!-- Formatting buttons under text input fields -->
+<div style="text-align: center; margin-top: 20px;">
+    <button onclick="formatText('bold')">Bold</button>
+    <button onclick="formatText('italic')">Italic</button>
+    <button onclick="formatText('underline')">Underline</button>
+    <button onclick="formatText('strikethrough')">Strikethrough</button>
+    <button onclick="formatText('obfuscated')">Obfuscated</button>
+</div>
+
+<h2 style="text-align: center;">Generated Command:</h2>
+<pre id="output" style="text-align: center;"></pre>
+
+<!-- Creator information -->
+<div style="text-align: center; margin-top: 40px;">
+    <p style="font-size: 18px;">Creator: Perplexity and the creator map "Crossroad"(!!!WARNING RUSSIAN!!!)</p>
+</div>
+
+<!-- Button to switch to Russian version -->
+<div style="text-align: center; margin-top: 20px;">
+    <a href="subtitles_RU.html"><button>Switch to Russian Version</button></a>
+	 <a href "vilagers_EN.html"><button>Switch to Custom Villager Generator for Minecraft<button/></a> 
+</div>
+
+<script>
+// Function to toggle color picker visibility
+function toggleColorPicker(button) {
+    const colorPicker = button.nextElementSibling;
+    colorPicker.click(); // Open color picker on button click
+}
+
+function updateColor(colorInput) {
+    const userText = colorInput.parentElement.querySelector('.userText');
+    userText.style.color = colorInput.value; // Update text color in input field
+}
+
+function formatText(style) {
+    const userText = document.querySelector('.userText');
+
+    switch (style) {
+        case 'bold':
+            userText.value = `§l${userText.value}§r`; // Bold text
+            break;
+        case 'italic':
+            userText.value = `§o${userText.value}§r`; // Italic text
+            break;
+        case 'underline':
+            userText.value = `§n${userText.value}§r`; // Underlined text
+            break;
+        case 'strikethrough':
+            userText.value = `§m${userText.value}§r`; // Strikethrough text
+            break;
+        case 'obfuscated':
+            userText.value = `§k${userText.value}§r`; // Obfuscated text
+            break;
+    }
+}
+
+function addNewLine() {
+    const container = document.getElementById('textInputsContainer');
+    const newLine = document.createElement('div');
+    newLine.classList.add('text-input');
+
+    newLine.innerHTML = `
+        <input type='text' class='userText' placeholder='Enter message text...' style='border-radius:15px;'>
+        <button onclick='toggleColorPicker(this)'>Color</button>
+        <input type='color' class='colorPicker' value='#ff0000' onchange='updateColor(this)'>
+        <input type='text' class='optionalLink' placeholder='Enter link (optional)' style='width:300px;margin-top:10px;border-radius:15px;'>
+        <button onclick='addNewLineWithNewline()'>\\n</button><br/>
+        <button onclick='removeLine(this)' style='color:red;'>✖️ Remove line</button><!-- Button to remove line -->
+   `;
+
+   container.appendChild(newLine);
+}
+
+function removeLine(button) {
+   const lineToRemove = button.parentElement; // Get parent element (the whole line)
+   lineToRemove.remove(); // Remove the line
+}
+
+function addNewLineWithNewline() {
+   const inputs = document.querySelectorAll('.userText');
+   if (inputs.length > 0) {
+       const lastInput = inputs[inputs.length - 1];
+       lastInput.value = '\\n' + lastInput.value; // Add \n at the beginning of the text
+   }
+}
+
+function generateCommand() {
+   const targetSelect = document.getElementById('targetSelect');
+   const customTarget = document.getElementById('customTarget').value.trim();
+   
+   let target = targetSelect.value;
+   
+   if (customTarget) {
+       target = customTarget; // Use player name as target if entered
+   }
+
+   let command = '';
+
+   const inputs = document.querySelectorAll('.text-input');
+
+   inputs.forEach((input) => {
+       const text = input.querySelector('.userText').value;
+       const color =
+           input.querySelector('.colorPicker') ?
+               input.querySelector('.colorPicker').value.slice(1) :
+               'ffffff'; // Remove '#'
+
+       if (text) {
+           command += `/tellraw ${target} {"text":"${text}","color":"#${color}"}`;
+           const link =
+               input.querySelector('.optionalLink').value;
+           if (link) {
+               command += `,"clickEvent":{"action":"open_url","value":"${link}"}}`;
+           } else {
+               command += `}`;
+           }
+           command += '\n'; // New line between commands
+       }
+   });
+
+   document.getElementById('output').textContent =
+       command.trim(); // Remove last newline character
+}
+</script>
+
+</body>
+</html>
