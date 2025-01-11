@@ -122,14 +122,39 @@ function addNewLineWithNewline() {
 }
 
 function generateCommand() {
-   const targetSelect = document.getElementById('targetSelect');
-   const customTarget = document.getElementById('customTarget').value.trim();
-   
-   let target = targetSelect.value;
-   
-   if (customTarget) {
-       target = customTarget;
-   }
+    const profession = document.getElementById('profession').value;
+    const level = document.getElementById('level').value;
+
+    let trades = [];
+    
+    const tradesElements = document.querySelectorAll('.trade');
+    
+    tradesElements.forEach(trade => {
+        const sellItem = trade.querySelector('.sellItem').value || 'minecraft:stone'; // Значение по умолчанию
+        const sellCount = trade.querySelector('.sellCount').value;
+
+        const buyItem1 = trade.querySelector('.buyItem1').value || 'minecraft:stone'; // Значение по умолчанию
+        const buyCount1 = trade.querySelector('.buyCount1').value;
+
+        const buyItem2 = trade.querySelector('.buyItem2').value; // Не используем значение по умолчанию
+        const buyCount2 = trade.querySelector('.buyCount2').value;
+
+        if (sellItem && buyItem1) { // Проверяем, что обязательные поля заполнены
+            let recipe = `{buy:{id:"${buyItem1}",Count:${buyCount1}},sell:{id:"${sellItem}",Count:${sellCount}}}`;
+            
+            if (buyItem2) { // Если второй предмет указан, добавляем его в сделку
+                recipe += `},{buy:{id:"${buyItem2}",Count:${buyCount2}},sell:{id:"${sellItem}",Count:${sellCount}}}`;
+            }
+
+            trades.push(recipe);
+        }
+    });
+
+    let command = `/summon minecraft:villager ~ ~ ~ {VillagerData:{type:plains,profession:"${profession}",level:${level}},Offers:{Recipes:[${trades.join(',')}]} }}`;
+
+    document.getElementById('output').textContent = command; // Отображаем сгенерированную команду
+}
+
 
    let command = `/tellraw ${target} {"extra":[`;
 
