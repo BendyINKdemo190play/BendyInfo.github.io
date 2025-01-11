@@ -33,12 +33,10 @@
 </div>
 
 <div style="text-align: center; margin-top: 20px;">
-    <!-- Кнопки для добавления новой строки и генерации команды в одной строке -->
     <button onclick="addNewLine()">Добавить новую строку</button>
     <button onclick="generateCommand()">Сгенерировать команду</button>
 </div>
 
-<!-- Кнопки форматирования под полями ввода -->
 <div style="text-align: center; margin-top: 20px;">
     <button onclick="formatText('bold')">Жирный</button>
     <button onclick="formatText('italic')">Курсив</button>
@@ -50,27 +48,25 @@
 <h2 style="text-align: center;">Сгенерированная команда:</h2>
 <pre id="output" style="text-align: center;"></pre>
 
-<!-- Информация о создателе -->
 <div style="text-align: center; margin-top: 40px;">
     <p style="font-size: 18px;">Создатель: Perplexity и создатель карты "Перекрестие"</p>
 </div>
 
-<!-- Кнопка для перехода на английскую версию -->
 <div style="text-align: center; margin-top: 20px;">
     <a href="index.html"><button>Перейти на английскую версию</button></a>
 	<a href="vilagers_RU.html"><button>Перейти на Генератор кастомных жителей для Minecraft</button></a>
 </div>
 
 <script>
-// Функция для переключения видимости выбора цвета
+// Переключение видимости выбора цвета
 function toggleColorPicker(button) {
     const colorPicker = button.nextElementSibling;
-    colorPicker.click(); // Открываем выбор цвета при нажатии на кнопку
+    colorPicker.click();
 }
 
 function updateColor(colorInput) {
     const userText = colorInput.parentElement.querySelector('.userText');
-    userText.style.color = colorInput.value; // Обновляем цвет текста в поле ввода
+    userText.style.color = colorInput.value;
 }
 
 function formatText(style) {
@@ -78,19 +74,19 @@ function formatText(style) {
 
     switch (style) {
         case 'bold':
-            userText.value = `§l${userText.value}§r`; // Жирный текст
+            userText.value = `§l${userText.value}§r`;
             break;
         case 'italic':
-            userText.value = `§o${userText.value}§r`; // Курсив
+            userText.value = `§o${userText.value}§r`;
             break;
         case 'underline':
-            userText.value = `§n${userText.value}§r`; // Подчеркнутый текст
+            userText.value = `§n${userText.value}§r`;
             break;
         case 'strikethrough':
-            userText.value = `§m${userText.value}§r`; // Зачеркнутый текст
+            userText.value = `§m${userText.value}§r`;
             break;
         case 'obfuscated':
-            userText.value = `§k${userText.value}§r`; // Моноширинный текст
+            userText.value = `§k${userText.value}§r`;
             break;
     }
 }
@@ -106,22 +102,22 @@ function addNewLine() {
         <input type='color' class='colorPicker' value='#ff0000' onchange='updateColor(this)'>
         <input type='text' class='optionalLink' placeholder='Введите ссылку (необязательно)' style='width:300px;margin-top:10px;border-radius:15px;'>
         <button onclick='addNewLineWithNewline()'>\\n</button><br/>
-        <button onclick='removeLine(this)' style='color:red;'>✖️ Удалить строку</button><!-- Кнопка для удаления строки -->
+        <button onclick='removeLine(this)' style='color:red;'>✖️ Удалить строку</button>
    `;
 
    container.appendChild(newLine);
 }
 
 function removeLine(button) {
-   const lineToRemove = button.parentElement; // Получаем родительский элемент (всю строку)
-   lineToRemove.remove(); // Удаляем строку
+   const lineToRemove = button.parentElement;
+   lineToRemove.remove();
 }
 
 function addNewLineWithNewline() {
    const inputs = document.querySelectorAll('.userText');
    if (inputs.length > 0) {
        const lastInput = inputs[inputs.length - 1];
-       lastInput.value = '\\n' + lastInput.value; // Добавляем \n в начало текста
+       lastInput.value = '\\n' + lastInput.value;
    }
 }
 
@@ -132,22 +128,22 @@ function generateCommand() {
    let target = targetSelect.value;
    
    if (customTarget) {
-       target = customTarget; // Если введено имя игрока, используем его как цель
+       target = customTarget;
    }
 
-   let command = '';
+   let command = `/tellraw ${target} {"extra":[`;
 
    const inputs = document.querySelectorAll('.text-input');
 
-   inputs.forEach((input) => {
+   inputs.forEach((input, index) => {
        const text = input.querySelector('.userText').value;
        const color =
            input.querySelector('.colorPicker') ?
                input.querySelector('.colorPicker').value.slice(1) :
-               'ffffff'; // Убираем '#'
+               'ffffff';
 
        if (text) {
-           command += `/tellraw ${target} {"text":"${text}","color":"#${color}"}`;
+           command += `{"text":"${text}","color":"#${color}"}`;
            const link =
                input.querySelector('.optionalLink').value;
            if (link) {
@@ -155,12 +151,16 @@ function generateCommand() {
            } else {
                command += `}`;
            }
-           command += '\n'; // Перенос строки между командами
+           if (index !== inputs.length - 1) {
+               command += ',';
+           }
        }
    });
 
+   command += ']}';
+
    document.getElementById('output').textContent =
-       command.trim(); // Убираем последний перенос строки
+       command.trim();
 }
 </script>
 
