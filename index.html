@@ -122,14 +122,46 @@ function addNewLineWithNewline() {
 }
 
 function generateCommand() {
-   const targetSelect = document.getElementById('targetSelect');
-   const customTarget = document.getElementById('customTarget').value.trim();
-   
-   let target = targetSelect.value;
-   
-   if (customTarget) {
-       target = customTarget;
-   }
+    const targetSelect = document.getElementById('targetSelect');
+    const customTarget = document.getElementById('customTarget').value.trim();
+    
+    let target = targetSelect.value;
+    
+    if (customTarget) {
+        target = customTarget;
+    }
+
+    let command = `/tellraw ${target} {"extra":[`;
+
+    const inputs = document.querySelectorAll('.text-input');
+
+    inputs.forEach((input, index) => {
+        const text = input.querySelector('.userText').value;
+        const color =
+            input.querySelector('.colorPicker') ?
+                input.querySelector('.colorPicker').value.slice(1) : // Убираем '#'
+                'ffffff';
+
+        if (text) {
+            command += `{"text":"${text}","color":"${color}"}`; // Убираем '#' из цвета
+            const link =
+                input.querySelector('.optionalLink').value;
+            if (link) {
+                command += `,"clickEvent":{"action":"open_url","value":"${link}"}}`;
+            } else {
+                command += `}`;
+            }
+            if (index !== inputs.length - 1) {
+                command += ',';
+            }
+        }
+    });
+
+    command += ']}';
+
+    document.getElementById('output').textContent =
+        command.trim();
+}
 
    let command = `/tellraw ${target} {"extra":[`;
 
