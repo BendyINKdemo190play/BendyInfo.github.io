@@ -14,7 +14,7 @@
     <div class="text-input">
         <input type="text" class="userText" placeholder="Enter message text..." style="border-radius: 15px;">
         <button onclick="toggleColorPicker(this)">Color</button>
-        <input type="color" class="colorPicker" value="#ff0000" onchange="updateColor(this)">
+        <input type="color" class="colorPicker" value="#ff0000" onchange="updateColor(this)" style="display:none;">
         <input type="text" class="optionalLink" placeholder="Enter link (optional)" style="width: 300px; margin-top: 10px; border-radius: 15px;">
         <button onclick="addNewLineWithNewline()">\\n</button>
     </div>
@@ -61,7 +61,7 @@
 // Toggle color picker visibility
 function toggleColorPicker(button) {
     const colorPicker = button.nextElementSibling;
-    colorPicker.click();
+    colorPicker.style.display = colorPicker.style.display === 'none' ? 'block' : 'none';
 }
 
 function updateColor(colorInput) {
@@ -99,7 +99,7 @@ function addNewLine() {
     newLine.innerHTML = `
         <input type='text' class='userText' placeholder='Enter message text...' style='border-radius:15px;'>
         <button onclick='toggleColorPicker(this)'>Color</button>
-        <input type='color' class='colorPicker' value='#ff0000' onchange='updateColor(this)'>
+        <input type='color' class='colorPicker' value='#ff0000' onchange='updateColor(this)' style='display:none;'>
         <input type='text' class='optionalLink' placeholder='Enter link (optional)' style='width:300px;margin-top:10px;border-radius:15px;'>
         <button onclick='addNewLineWithNewline()'>\\n</button><br/>
         <button onclick='removeLine(this)' style='color:red;'>✖️ Remove line</button>
@@ -125,11 +125,7 @@ function generateCommand() {
     const targetSelect = document.getElementById('targetSelect');
     const customTarget = document.getElementById('customTarget').value.trim();
     
-    let target = targetSelect.value;
-    
-    if (customTarget) {
-        target = customTarget;
-    }
+    let target = customTarget || targetSelect.value;
 
     let command = `/tellraw ${target} {"extra":[`;
 
@@ -161,38 +157,6 @@ function generateCommand() {
 
     document.getElementById('output').textContent =
         command.trim();
-}
-
-   let command = `/tellraw ${target} {"text":"","color":"white","extra":[`;
-
-   const inputs = document.querySelectorAll('.text-input');
-
-   inputs.forEach((input, index) => {
-       const text = input.querySelector('.userText').value;
-       const color =
-           input.querySelector('.colorPicker') ?
-               input.querySelector('.colorPicker').value.slice(1) :
-               'ffffff';
-
-       if (text) {
-           command += `{"text":"${text}","color":"#${color}"}`;
-           const link =
-               input.querySelector('.optionalLink').value;
-           if (link) {
-               command += `,"clickEvent":{"action":"open_url","value":"${link}"}}`;
-           } else {
-               command += `}`;
-           }
-           if (index !== inputs.length - 1) {
-               command += ',';
-           }
-       }
-   });
-
-   command += ']}';
-
-   document.getElementById('output').textContent =
-       command.trim();
 }
 </script>
 
