@@ -97,12 +97,12 @@ function addNewLine() {
     newLine.classList.add('text-input');
 
     newLine.innerHTML = `
-        <input type='text' class='userText' placeholder='Введите текст сообщения...' style='border-radius:15px;'>
-        <button onclick='toggleColorPicker(this)'>Цвет</button>
+        <input type='text' class='userText' placeholder='Enter message text...' style='border-radius:15px;'>
+        <button onclick='toggleColorPicker(this)'>Color</button>
         <input type='color' class='colorPicker' value='#ff0000' onchange='updateColor(this)'>
-        <input type='text' class='optionalLink' placeholder='Введите ссылку (необязательно)' style='width:300px;margin-top:10px;border-radius:15px;'>
+        <input type='text' class='optionalLink' placeholder='Enter link (optional)' style='width:300px;margin-top:10px;border-radius:15px;'>
         <button onclick='addNewLineWithNewline()'>\\n</button><br/>
-        <button onclick='removeLine(this)' style='color:red;'>✖️ Удалить строку</button>
+        <button onclick='removeLine(this)' style='color:red;'>✖️ Remove line</button>
    `;
 
    container.appendChild(newLine);
@@ -122,39 +122,46 @@ function addNewLineWithNewline() {
 }
 
 function generateCommand() {
-    const profession = document.getElementById('profession').value;
-    const level = document.getElementById('level').value;
-
-    let trades = [];
+    const targetSelect = document.getElementById('targetSelect');
+    const customTarget = document.getElementById('customTarget').value.trim();
     
-    const tradesElements = document.querySelectorAll('.trade');
+    let target = targetSelect.value;
     
-    tradesElements.forEach(trade => {
-        const sellItem = trade.querySelector('.sellItem').value || 'minecraft:stone'; // Значение по умолчанию
-        const sellCount = trade.querySelector('.sellCount').value;
+    if (customTarget) {
+        target = customTarget;
+    }
 
-        const buyItem1 = trade.querySelector('.buyItem1').value || 'minecraft:stone'; // Значение по умолчанию
-        const buyCount1 = trade.querySelector('.buyCount1').value;
+    let command = `/tellraw ${target} {"extra":[`;
 
-        const buyItem2 = trade.querySelector('.buyItem2').value; // Не используем значение по умолчанию
-        const buyCount2 = trade.querySelector('.buyCount2').value;
+    const inputs = document.querySelectorAll('.text-input');
 
-        if (sellItem && buyItem1) { // Проверяем, что обязательные поля заполнены
-            let recipe = `{buy:{id:"${buyItem1}",Count:${buyCount1}},sell:{id:"${sellItem}",Count:${sellCount}}}`;
-            
-            if (buyItem2) { // Если второй предмет указан, добавляем его в сделку
-                recipe += `},{buy:{id:"${buyItem2}",Count:${buyCount2}},sell:{id:"${sellItem}",Count:${sellCount}}}`;
+    inputs.forEach((input, index) => {
+        const text = input.querySelector('.userText').value;
+        const color =
+            input.querySelector('.colorPicker') ?
+                input.querySelector('.colorPicker').value.slice(1) : // Убираем '#'
+                'ffffff';
+
+        if (text) {
+            command += `{"text":"${text}","color":"${color}"}`; // Убираем '#' из цвета
+            const link =
+                input.querySelector('.optionalLink').value;
+            if (link) {
+                command += `,"clickEvent":{"action":"open_url","value":"${link}"}}`;
+            } else {
+                command += `}`;
             }
-
-            trades.push(recipe);
+            if (index !== inputs.length - 1) {
+                command += ',';
+            }
         }
     });
 
-    let command = `/summon minecraft:villager ~ ~ ~ {VillagerData:{type:plains,profession:"${profession}",level:${level}},Offers:{Recipes:[${trades.join(',')}]} }}`;
+    command += ']}';
 
-    document.getElementById('output').textContent = command; // Отображаем сгенерированную команду
+    document.getElementById('output').textContent =
+        command.trim();
 }
-
 
    let command = `/tellraw ${target} {"text":"","color":"white","extra":[`;
 
