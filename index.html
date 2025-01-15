@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор команд tellraw 1.21.1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="theme-switch" onclick="toggleTheme()">
+        Сменить тему
+    </div>
+    <div class="lang-switch" onclick="toggleLang()">
+        English
+    </div>
+
+    <div id="authButtons" class="auth-buttons">
+        <button onclick="showLoginForm()">Войти</button>
+        <button onclick="showRegisterForm()">Регистрация</button>
+    </div>
+
+    <div id="userInfo" class="user-info" style="display: none;">
+        <span id="userName"></span>
+        <button onclick="signOut()">Выйти</button>
+    </div>
+
+    <div id="authForms" class="auth-forms">
+        <div id="loginForm">
+            <h3>Вход</h3>
+            <input type="text" id="loginUsername" placeholder="Имя пользователя">
+            <input type="password" id="loginPassword" placeholder="Пароль">
+            <button onclick="login()">Войти</button>
+            <button onclick="showRegisterForm()">Регистрация</button>
+            <button onclick="closeAuthForms()">Закрыть</button>
+        </div>
+        <div id="registerForm" style="display: none;">
+            <h3>Регистрация</h3>
+            <input type="text" id="regUsername" placeholder="Имя пользователя">
+            <input type="password" id="regPassword" placeholder="Пароль">
+            <input type="password" id="regPasswordConfirm" placeholder="Подтвердите пароль">
+            <button onclick="register()">Зарегистрироваться</button>
+            <button onclick="showLoginForm()">Вход</button>
+            <button onclick="closeAuthForms()">Закрыть</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Генератор команд tellraw 1.21.1</h1>
+        
+        <!-- Секция пресетов -->
+        <div class="presets-section">
+            <h3>Пресеты</h3>
+            <div class="presets-header">
+                <input type="text" id="presetSearch" placeholder="Поиск пресетов..." onkeyup="filterPresets()">
+                <button onclick="saveCustomPreset()">Сохранить пресет</button>
+            </div>
+            <div class="presets-container">
+                <div class="presets-list">
+                    <h4>Стандартные пресеты</h4>
+                    <div id="defaultPresetsContainer" class="presets-grid"></div>
+                    <h4>Мои пресеты</h4>
+                    <div id="userPresetsContainer" class="presets-grid"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="charactersContainer">
+            <!-- Сюда будут добавляться блоки персонажей -->
+        </div>
+        <button onclick="addCharacterBlock()">Добавить персонажа</button>
+        <button onclick="generateTellraw()">Сгенерировать команду</button>
+        
+        <div id="preview" class="preview-block">
+            <!-- Предпросмотр будет обновляться через JavaScript -->
+        </div>
+        <div id="result"></div>
+
+        <!-- Секция помощи и инструкций -->
+        <div class="help-section">
+            <h2 class="help-title">Помощь и инструкция</h2>
+            <div class="help-tabs">
+                <button class="tab-button active" onclick="showTab('instructions')">Инструкция</button>
+                <button class="tab-button" onclick="showTab('examples')">Примеры</button>
+                <button class="tab-button" onclick="showTab('ai-helper')">AI Помощник</button>
+                <button class="tab-button" onclick="showTab('community')">Сообщество</button>
+            </div>
+
+            <div id="instructions" class="tab-content active">
+                <h3>Как использовать генератор:</h3>
+                <ol>
+                    <li>Добавьте блок текста кнопкой "Добавить персонажа"</li>
+                    <li>Введите текст в формате: &lt;Имя&gt; Сообщение</li>
+                    <li>Выберите цвет текста</li>
+                    <li>Используйте кнопки форматирования (B, I, U, S) при необходимости</li>
+                    <li>Для переноса на новую строку используйте кнопку "Добавить перенос в начало"</li>
+                    <li>Нажмите "Сгенерировать команду"</li>
+                </ol>
+                <p><strong>Подсказка:</strong> Для создания диалога добавьте несколько блоков текста.</p>
+            </div>
+
+            <div id="examples" class="tab-content">
+                <h3>Примеры команд:</h3>
+                <div class="example">
+                    <h4>Простой диалог:</h4>
+                    <pre class="example-code">/tellraw @a [{"text":"<Steve> ","color":"aqua"},{"text":"Привет!","color":"white"},{"text":"\n"},{"text":"<Alex> ","color":"light_purple"},{"text":"Здравствуй!","color":"white"}]</pre>
+                </div>
+                <div class="example">
+                    <h4>Объявление:</h4>
+                    <pre class="example-code">/tellraw @a [{"text":"\n"},{"text":"[Объявление] ","color":"gold"},{"text":"Важное сообщение!","color":"yellow"}]</pre>
+                </div>
+            </div>
+
+            <div id="ai-helper" class="tab-content">
+                <div class="ai-chat">
+                    <div class="ai-hint">
+                        Вы можете спросить о том, как:
+                        • создать диалог
+                        • добавить перенос строки
+                        • использовать форматирование
+                        • изменить цвета
+                    </div>
+                    <div class="ai-messages" id="aiMessages">
+                        <!-- Сообщения будут добавляться через JavaScript -->
+                    </div>
+                    <div class="ai-input">
+                        <textarea id="aiQuestion" placeholder="Задайте вопрос..."></textarea>
+                        <button onclick="askAI()">Спросить</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="community" class="tab-content">
+                <div class="community-section">
+                    <h3>Пресеты сообщества</h3>
+                    <div id="communityPresets" class="community-grid">
+                        <!-- Пресеты сообщества будут добавлены через JavaScript -->
+                    </div>
+                    <button onclick="shareCurrentPreset()">Поделиться пресетом</button>
+                </div>
+                <div class="community-section">
+                    <h3>Форум</h3>
+                    <div class="forum-categories">
+                        <button onclick="loadForumTopics('general')" class="active">Общее</button>
+                        <button onclick="loadForumTopics('help')">Помощь</button>
+                        <button onclick="loadForumTopics('showcase')">Демонстрация</button>
+                    </div>
+                    <div id="forumTopics">
+                        <!-- Темы форума будут добавлены через JavaScript -->
+                    </div>
+                    <button onclick="createNewTopic()">Создать тему</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="tellraw-generator.js"></script>
+</body>
+</html>
