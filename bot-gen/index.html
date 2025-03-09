@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор Telegram-бота</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Генератор Telegram-бота</h1>
+		<a href="instrucntion.html" class="link" target="_blank">
+            📘Инструкция
+        </a>
+
+        <section id="message-form">
+            <h2>Добавить сообщение</h2>
+            <form id="add-message-form">
+                <label for="message-id">ID сообщения:</label>
+                <input type="text" id="message-id" name="message-id" required>
+
+                <label for="command">Команда:</label>
+                <input type="text" id="command" name="command" required>
+
+                <label for="text">Текст сообщения:</label>
+                <textarea id="text" name="text" required></textarea>
+
+                <label for="photo">Фото (необязательно):</label>
+                <input type="file" id="photo" name="photo">
+
+                <label class="checkbox-label">
+                    <input type="checkbox" id="show-typing"> НЕ НАЖИМАТЬ ЭТО ТЕСТОВАЯ ФУНКЦИЯ ЗДЕСЬ ОНА НЕДОСТУПНА!!! 
+                </label>
+
+                <button type="button" id="add-message-button">Добавить сообщение</button>
+            </form>
+        </section>
+
+        <section id="button-form">
+            <h2>Добавить кнопку</h2>
+            <form id="add-button-form">
+                <label for="button-id">ID кнопки:</label>
+                <input type="text" id="button-id" name="button-id" required>
+
+                <label for="message-id-select">ID сообщения:</label>
+                <select id="message-id-select" name="message-id" required>
+                    <!-- Опции будут добавлены JavaScript -->
+                </select>
+
+                <label for="button-text">Текст кнопки:</label>
+                <input type="text" id="button-text" name="button-text" required>
+
+                <label for="url">URL (необязательно):</label>
+                <input type="text" id="url" name="url">
+
+                <label for="callback">Команда (callback, необязательно):</label>
+                <input type="text" id="callback" name="callback">
+
+                <label for="response-text">Текст ответа (необязательно):</label>
+                <input type="text" id="response-text" name="response-text">
+
+                <button type="button" id="add-button-button">Добавить кнопку</button>
+            </form>
+        </section>
+
+        <section id="elements-list">
+            <h2>Добавленные элементы</h2>
+            <div id="messages-list">
+                <h3>Сообщения</h3>
+                <ul id="message-list">
+                    <!-- Сообщения будут добавлены JavaScript -->
+                </ul>
+            </div>
+            <div id="buttons-list">
+                <h3>Кнопки</h3>
+                <ul id="button-list">
+                    <!-- Кнопки будут добавлены JavaScript -->
+                </ul>
+            </div>
+        </section>
+
+        <section id="generate-code">
+            <h2>Сгенерировать код</h2>
+            <div class="token-input">
+                <label for="bot-token">Токен бота:</label>
+                <input type="text" id="bot-token" placeholder="Введите ваш Telegram bot token">
+                <button type="button" id="save-token">Сохранить</button>
+            </div>
+            <button id="generate-button">Сгенерировать код</button>
+        </section>
+
+        <section id="code-output">
+            <h2>Сгенерированный код</h2>
+            <pre id="code-preview"></pre>
+            <button id="download-button">Скачать код</button>
+        </section>
+    </div>
+
+    <script src="JavaScript/script.js"></script>
+	<script src="JavaScript/generator.js"></script>
+</body>
+</html>
