@@ -1,0 +1,104 @@
+:root {
+    --mc-dark: #1a1a1a;
+    --mc-border: #4d4d4d;
+    --mc-text: #e6e6e6;
+    --mc-accent: #ff5555;
+}
+
+body {
+    background: linear-gradient(to bottom right, #0a0a0a 25%, #1f1f1f),
+                url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR4Ae3OQQEAAAgDoJv5QW4JyCoJHSQBJkCAAAECBAgQIECAAAECBAYVeAI1hAH1B+UhAAAAAElFTkSuQmCC');
+    color: var(--mc-text);
+    font-family: 'Monocraft', monospace; /* Изменено здесь */
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Остальные стили остаются без изменений */
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    border: 4px solid var(--mc-border);
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 15px rgba(255, 85, 85, 0.3);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border: 4px solid var(--mc-border);
+    margin: 0 auto 15px;
+    image-rendering: pixelated;
+	border-radius: 30%;
+}
+
+h1 {
+    color: var(--mc-accent);
+    font-size: 2.5em;
+    text-shadow: 2px 2px #000;
+    margin: 10px 0;
+}
+
+.links {
+    display: grid;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.link {
+    background: rgba(40, 40, 40, 0.9);
+    border: 2px solid var(--mc-border);
+    padding: 15px;
+    text-decoration: none;
+    color: var(--mc-text);
+    transition: all 0.3s ease;
+}
+
+.link:hover {
+    background: var(--mc-accent);
+    border-color: #ff3333;
+    transform: translateY(-2px);
+}
+
+.about {
+    border-left: 4px solid var(--mc-accent);
+    padding-left: 20px;
+    margin: 30px 0;
+}
+
+@font-face {
+    font-family: 'Minecraft';
+    src: url('https://fonts.cdnfonts.com/s/31392/Minecraftia.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Monocraft';
+    src: url('https://github.com/IdreesInc/Monocraft/blob/master/Monocraft.ttf?raw=true') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@media (max-width: 600px) {
+    .container {
+        margin: 10px;
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+    }
+}
+
+h3 {
+	border-left: 4px solid var(--mc-accent);
+    padding-left: 20px;
+    margin: 30px 0;
+}
