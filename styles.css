@@ -15,6 +15,21 @@ body {
     padding: 20px;
 }
 
+.WhApp {
+	color: green;
+}
+
+.tg {
+	color: blue;
+}
+
+.Errors {
+	font-family: Segoe Script;
+}
+
+.PhoneNumber {
+	font-family: monocraft;
+}
 /* Остальные стили остаются без изменений */
 
 .container {
