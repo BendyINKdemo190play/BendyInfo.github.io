@@ -73,7 +73,7 @@ h1 {
 
 @font-face {
     font-family: 'Monocraft';
-    src: url('/fonts/Monocraft.ttf') format('truetype');
+    src: url('/fonts/Monocraft.otf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
