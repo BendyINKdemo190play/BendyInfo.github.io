@@ -6,6 +6,56 @@
     <title>Bendy INKdemo190 ► play</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
+	 <style>
+        #pinpadContainer {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        #pinDisplay {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        #pinpad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        #pinpad button {
+            padding: 10px;
+            font-size: 18px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #nextPageLink {
+            display: none;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f0f0f0;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
