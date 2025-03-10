@@ -88,3 +88,51 @@ h1 {
         font-size: 1.8em;
     }
 }
+
+/* Стили для подвала */
+        .footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            border-top: 4px solid var(--mc-border);
+            margin-top: 20px;
+        }
+        /* Стили для ссылок на WhatsApp и Telegram */
+        .footer a {
+            margin: 0 10px;
+            color: var(--mc-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: var(--mc-accent);
+            text-decoration: underline;
+        }
+        /* Стили для скрытых элементов */
+        .hidden {
+            display: none;
+        }
+        /* Стили для пинкода */
+        #pinpad {
+            margin-top: 10px;
+        }
+        #pinpad button {
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: rgba(40, 40, 40, 0.9);
+            color: var(--mc-text);
+            border: 2px solid var(--mc-border);
+            font-family: 'Monocraft', monospace;
+            transition: all 0.3s ease;
+        }
+        #pinpad button:hover {
+            background-color: var(--mc-accent);
+            border-color: #ff3333;
+            color: var(--mc-dark);
+        }
+        #pinDisplay {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
