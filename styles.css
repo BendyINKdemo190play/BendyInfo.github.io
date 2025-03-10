@@ -14,7 +14,7 @@ body {
     padding: 20px;
 }
 
-.Errors { font-family: 'Segoe Script Ui', cursive; }
+.Errors { font-family: 'Segoe Script', cursive; }
 .PhoneNumber { font-family: 'Monocraft', monospace; }
 
 .container {
