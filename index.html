@@ -55,84 +55,71 @@
             </a>
 		</div>
     </div>
-	&copy; 2025 ООО "БендиИНКдемо190 плэй". Все права защищены.
-        
-            WhatsApp
-        
-        
-            Telegram
-        
-        
-            
-                
-                    <button onclick="enterPin(0)">0</button>
-                    <button onclick="enterPin(1)">1</button>
-                    <button onclick="enterPin(2)">2</button>
-                    <button onclick="enterPin(3)">3</button>
-                    <button onclick="enterPin(4)">4</button>
-                    <button onclick="enterPin(5)">5</button>
-                    <button onclick="enterPin(6)">6</button>
-                    <button onclick="enterPin(7)">7</button>
-                    <button onclick="enterPin(8)">8</button>
-                    <button onclick="enterPin(9)">9</button>
-                
-                
-                <a href="#" id="nextPageLink">Перейти к следующей странице</a>
-            
-        
-    
+	<div id="pinpadContainer">
+        <div id="pinDisplay">****</div>
+        <div id="pinpad">
+            <button onclick="enterPin(1)">1</button>
+            <button onclick="enterPin(2)">2</button>
+            <button onclick="enterPin(3)">3</button>
+            <button onclick="enterPin(4)">4</button>
+            <button onclick="enterPin(5)">5</button>
+            <button onclick="enterPin(6)">6</button>
+            <button onclick="enterPin(7)">7</button>
+            <button onclick="enterPin(8)">8</button>
+            <button onclick="enterPin(9)">9</button>
+            <button onclick="enterPin(0)">0</button>
+        </div>
+        <a href="#" id="nextPageLink">Перейти к следующей странице</a>
+    </div>
+
+    <footer>
+        &copy; 2025 ООО "БендиИНКдемо190 плэй". Все права защищены.
+        <a href="tel:+79931087402">Позвонить: +7 (993) 108-74-02</a>
+    </footer>
 
     <script>
-        // Функция для активации пинкода по слову "minecraft"
         let codeWord = "minecraft";
         let inputString = "";
-        let pinpadVisible = false;
+        let pinpadContainer = document.getElementById("pinpadContainer");
+        let pinDisplay = document.getElementById("pinDisplay");
+        let nextPageLink = document.getElementById("nextPageLink");
+        let pin = "";
+        const correctPin = "0911";
 
         document.addEventListener("keydown", function(event) {
             inputString += event.key.toLowerCase();
             if (inputString.includes(codeWord)) {
                 inputString = "";
-                togglePinpad();
+                pinpadContainer.style.display = "block";
+                updatePinDisplay();
             }
         });
-
-        // Функция для отображения/скрытия пинкода
-        function togglePinpad() {
-            let pinpad = document.getElementById("pinpadContainer");
-            pinpad.classList.toggle("hidden");
-            pinpadVisible = !pinpadVisible;
-        }
-
-        // Функциональность пинкода
-        let pin = "";
-        let correctPin = "0911";
 
         function enterPin(number) {
             if (pin.length < 4) {
                 pin += number;
                 updatePinDisplay();
             }
+        }
+
+        function updatePinDisplay() {
+            let maskedPin = "";
+            for (let i = 0; i < pin.length; i++) {
+                maskedPin += "•";
+            }
+            pinDisplay.innerText = maskedPin + "*".repeat(4 - pin.length);
+
             if (pin.length === 4) {
                 checkPin();
             }
         }
 
-        function updatePinDisplay() {
-            let display = document.getElementById("pinDisplay");
-            let maskedPin = "";
-            for (let i = 0; i < pin.length; i++) {
-                maskedPin += "•";
-            }
-            display.innerText = maskedPin;
-        }
-
         function checkPin() {
-            let display = document.getElementById("pinDisplay");
             if (pin === correctPin) {
-                display.innerText = "****";
-                document.getElementById("nextPageLink").style.display = "inline";
+                pinDisplay.innerText = "****";
+                nextPageLink.style.display = "inline";
             } else {
-                display.innerText = "Ошибка";
+                pinDisplay.innerText = "Ошибка";
                 setTimeout(() => {
                     pin = "";
                     updatePinDisplay();
