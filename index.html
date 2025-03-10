@@ -6,39 +6,48 @@
     <title>Bendy INKdemo190 ► play</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
-	 <style>
+	<style>
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333; /* Темный фон */
+            color: #fff; /* Белый текст */
+            font-size: 14px;
+            position: relative; /* Для позиционирования pinpad */
+        }
+
         #pinpadContainer {
             display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+            position: absolute; /* Абсолютное позиционирование внутри подвала */
+            top: 10px; /* Отступ от верха подвала */
+            left: 50%; /* Центрирование по горизонтали */
+            transform: translateX(-50%); /* Корректировка центрирования */
             background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px;
+            padding: 10px;
             text-align: center;
             z-index: 1000;
+            border-radius: 5px;
         }
 
         #pinDisplay {
-            font-size: 24px;
+            font-size: 18px;
             color: white;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         #pinpad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 10px;
+            gap: 5px;
         }
 
         #pinpad button {
-            padding: 10px;
-            font-size: 18px;
-            background-color: #333;
+            padding: 5px;
+            font-size: 14px;
+            background-color: #555;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 3px;
             cursor: pointer;
         }
 
@@ -46,14 +55,8 @@
             display: none;
             color: white;
             text-decoration: none;
-            font-size: 20px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #f0f0f0;
-            font-size: 14px;
+            font-size: 16px;
+            margin-top: 5px;
         }
     </style>
 </head>
