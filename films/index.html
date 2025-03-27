@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BendyCinema</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BendyCinema</h1>
+        </header>
+        <main>
+            <div class="adblock-recommendation">
+                <p>Для лучшего просмотра видео без рекламы, рекомендуем установить расширение AdBlock: <a href="https://chromewebstore.google.com/detail/adblock-–-блокировка-рекл/gighmmpiobklfepjocnamgkkbiglidom?hl=ru" target="_blank">Установить AdBlock</a></p>
+            </div>
+            <div class="warning">
+                <p>Вся информация на данном сайте представлена в ознакомительных целях. Администрация сайта не несет ответственности за содержание предоставляемых материалов.</p>
+            </div>
+            <input type="text" id="search-input" placeholder="Поиск...">
+            <section class="films" id="films-section">
+                <h2>Фильмы:</h2>
+                <div class="film-block" onclick="openModal('1')">
+                    <img src="https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/a419d20d-4ae6-4c7c-91b3-c38ef9ca1ffe/1920x" alt="Бриллиантовая рука">
+                    <h3>Бриллиантовая рука</h3>
+                </div>
+				<div class="film-block" onclick="openModal('shazam')">
+                    <img src="https://kinopoisk-ru.clstorage.net/29u8NT357/d66fb9ojtw9/MngGTIzGJmaMzksqfgKJDUR3FeIJN6LncDR6-omx5qCzV5X9FGqZ_4Y8mBwh7zJZ6pqFsRrMBdxBamWSu4hPLbL8E5teQ-Qz20uZ_GiDyQoD4MDzD2W3dndwraxeeiqqv93JdJugkfSebQhNZDkmTnqKkyaLzoJYRLbqA7ZWmT6zP4vDjRvjbwvdRCt_CosI3r2U4lg1puTi9nv9ALWpa3xcwD2UrJ4_UO2FzTJwr470CxrpRkFXVQjxppm2FVk-PjxMTIDWZKQDlMljtkqCDVT0VGEcs6Kpbnx19wC8KWi7FIb0HGqVfhmqRck-u6ZAPw_Roo1InBHN_eBZ_xhZufwwgoLFl-Dpwp_Nq3aNAoIS-ZVtmD7iJ6UyeP0BuKksfZFH9Ffklj0RLcDMNTomzTiMUG1DhZqWjHtumvIbXvw5_M-CThepZc3QBuZwgMoA1jUZZ9p0J-KvdX17BzSnKfRfTfST6VL6F-VAjjm1pgC4zRitRQ6RUUrzr5X7HlX7_78PSsvX7OGIW8kquc6DTRs_1WrfOidhLvswO0e-76u9FsU81ufUu5RqxIM0dyyBM8PbrcuE1RxNMW6QdhzQtDO2RYUKEWCsQNvIJzvJww3evlEnV_Mmrm7y-jMLfSdrtxjFOtovnb_fbAkJvTruRrXCUaLCSdQZiLSk0jDTGvE_ucqExVSpb0IUSSF0jcpOWzGUZ5CyIyHhNfL8ij5jar8Xw_RZINR2VakBS7x3poY0DlQvRoyYlE95oJ853hXx97QLCkVe6aSKU4ni_IIDzVFxXyXY9aEprrA99Uw5J2G33gM7lG4V_J6ihkI08i3L98vYb0oN0xeNdWTfdxwZ9fO7CksEF-nhjRnDKvRFzkBW9tRklH8nJCiw_jAGNC-r-tHHN5aqWj_WYsBN8nogj3LN3GCJBtxVz3BrWbfU1j2-dwLLyJMopACfiem-TQmBHHwXI1EyZqguMnw4SvkgL31cDjZTK1x13-SOgjo4p8P6gBrkhk9Xn8SxZ9L1Xhh7fDNNyUlTKaTClkzoucpIzlX3kCLfdOis4fA6sUm-7-lylcs3H6eb_dVhRwl18CpGNULebstIF9HENOZbcNcZ-vtzBQuDkeDlwVaGoT0Phc3U8VetGbjl7-c99P0M_KFouhgFPxMpEvKf6w9Ie7KnBvOO2GKCgJxWRfDknrBXlPz5t4NNDVVgIwxbyKr5jk0Lnr6Y5V54L6RvO3R7Cr9lqjGfhfKdrFN4niNJDbYyKICwAxanT0zYksWzbl823Jj1tzTAAooZZaaKm4ZiuE3MTx0-latRtOknYzQzsU7xJSB00EV_G24UslOlAEl-8u9D-8wQbgMBGZSBee4TOlacuvE4iwVMlKZmyV5AozcBBQ-Z-tDmFjfpaeU0MXFO_Glnc56Fuh5hG_3RLIGCtTEmBzdH0WBORdCfC78mVbAYEj7wewLEwpRgI0VbTaq5jgPBkjrVrRS8oycoPH3yCTFrYbxfzv3X491yV-1Nw3o6bo69h9HsRA-ZHAd8bxd13d4-tLwHwc5dY6QAUIGnfUtBxt21lusftCFuqv9yOEPw5GD7U8My12lUNd5gRQU1_uSDfwtU7gWI2ZWFPymTMhbe9TA4j0FBXuBjApcBID3Kxg7Xfl7slP7rb-96MTeBcWUje19Lutvh2vhc5M6NfbnlB7HPFKpLgVMcC39uXTnRVzK5PUIFw5YhJUHeQWY8A0uIUXndZZi76O-qfbg4yLTmqbwRQ_Tc79t0X6wGwvV25kZ1S5AvzUbbHk23o5m42VD1MnSNREmQ6SIJ1oMgP0JCQtXxHq9X92skK_Pw_4m5pOF9WANzUm-VeN8iy4J8sGxOvMrcKMXE31_EMulYPV-UNvuzjoaD12RuiNYF6fwDDcqbcN1sVLIir6lw-zsLfWGheZdMt9InVX_ZpIiAP3jtzrTOFKrPxN_UQ_Pg0L-RX3B3-EeLSFdkr0Objq6_z8kI3P1fLl-0JeGlP7K4yfamoHVYR7fSa5k_EGmLyDbwqo0yjJHnRUdakoQw7Vq3H9r6d7_ORkLTpaZM08_h8QoAgBI4nO0e9KIjbvAwMAw85-v50wi7HizTdx7mxwv9N6pA-89U78zCGVHPuiNYdtCS87m1zoDOkWOmQxYFqrfJRgYWMh3sWbPm7qd--rDA9CMhMRlD_Ntj0rocpUMCe_rvSbTE1emGylrYj3nlWT6XVTu0PA7FRh4mYgpfBu7-zgtOmvKU5dGyYebmuj23QrAgbvkXinoUqd4116MIyP73IQt4DZmkhUFZGcrwLpv5XJ-6szSGgcVf5eoF3EjpcM0Bi9Z1XGqZfOnmaT3-tY6x7yN-GY0xH6BdddFpi4J-_abP_MdVrobEnJpJNyuWN57Vez_8jsMDU69mg1ODI76FzcuZvNxmG_Nm7-q4OriM8SeqPRDFdxEomb2XYE7OMbFujD0DWCxLQBQYwnRjlz8Y0ns6dYIGTd1oogzXDGHxz0qNHbARJB6zp6mrtHUwCXAj6_ZcwLIa7140m-5BBj6xbUQ_xt3sSgaQHoR6pxq2F5jz_rwCi0PWYyvEU4kgeUEIixm33S6RdGmr5XQ4-ENzbS42Foc1nKYYd5iiiUu-_6mFfI5TJYPEmFUFu2uS-F4curl5x8kJF2mpwh2MIzZKSceUPhztH_Al5-l4sbBCvO6sd9QFOtIm1bXZLIYAc3cqTnMCnOAMCFudxHqh0b0d0HH2sUBCghEsIgxfia8wRkONX3Kd7JSz7aZqdD1yAT8pb78bRLZaaRT2WKWHBf56rcUyAJ7iTMHYFE-1ph82Hx31_vFOjUPVJ6tCFAArvUDKyZF2kWob9ifmYP2yOINxISRzFIPxFWhS8J8ogcH0cSTH_EgaaMfKV9aCNelQ-FjQNT9xjwXA324rwdaMIvAARAZScBehm3dh6CV_NH0HdK8m_lFNu9YrkzrcLASEPnuuybjN3CiJQBxRRY" alt="Шазам">
+                    <h3>Шазам!<br>⁯</h3>
+                </div>
+				<div class="film-block" onclick="openModal('shazam2')">
+                    <img src="https://kinopoisk-ru.clstorage.net/29u8NT357/d66fb9ojtw9/MngGTIzGJmaMzksqfgKJDUR3FeIJN6LncDR6-omx5qCzV5X9FGqZ_4Y92F1ir_GZqo_RsM6Z0ElU6nEHr51PLbO8hxteA-Vy20mZ_2kXnJ7D9dTyW-W3dndwraxeeiqqv93JdJugkfSebQhNZDkmTnqKkyaLzoJYRLbqA7ZWmT6zP4vDjRvjbwvdRCt_CosI3r2U4lg1puTi9nv9ALWpa3xcwD2UrJ4_UO2FzTJwr470CxrpRkFXVQjxppm2FVk-PjxMTIDWZKQDlMljtkqCDVT0VGEcs6Kpbnx19wC8KWi7FIb0HGqVfhmqRck-u6ZAPw_Roo1InBHN_eBZ_xhZufwwgoLFl-Dpwp_Nq3aNAoIS-ZVtmD7iJ6UyeP0BuKksfZFH9Ffklj0RLcDMNTomzTiMUG1DhZqWjHtumvIbXvw5_M-CThepZc3QBuZwgMoA1jUZZ9p0J-KvdX17BzSnKfRfTfST6VL6F-VAjjm1pgC4zRitRQ6RUUrzr5X7HlX7_78PSsvX7OGIW8kquc6DTRs_1WrfOidhLvswO0e-76u9FsU81ufUu5RqxIM0dyyBM8PbrcuE1RxNMW6QdhzQtDO2RYUKEWCsQNvIJzvJww3evlEnV_Mmrm7y-jMLfSdrtxjFOtovnb_fbAkJvTruRrXCUaLCSdQZiLSk0jDTGvE_ucqExVSpb0IUSSF0jcpOWzGUZ5CyIyHhNfL8ij5jar8Xw_RZINR2VakBS7x3poY0DlQvRoyYlE95oJ853hXx97QLCkVe6aSKU4ni_IIDzVFxXyXY9aEprrA99Uw5J2G33gM7lG4V_J6ihkI08i3L98vYb0oN0xeNdWTfdxwZ9fO7CksEF-nhjRnDKvRFzkBW9tRklH8nJCiw_jAGNC-r-tHHN5aqWj_WYsBN8nogj3LN3GCJBtxVz3BrWbfU1j2-dwLLyJMopACfiem-TQmBHHwXI1EyZqguMnw4SvkgL31cDjZTK1x13-SOgjo4p8P6gBrkhk9Xn8SxZ9L1Xhh7fDNNyUlTKaTClkzoucpIzlX3kCLfdOis4fA6sUm-7-lylcs3H6eb_dVhRwl18CpGNULebstIF9HENOZbcNcZ-vtzBQuDkeDlwVaGoT0Phc3U8VetGbjl7-c99P0M_KFouhgFPxMpEvKf6w9Ie7KnBvOO2GKCgJxWRfDknrBXlPz5t4NNDVVgIwxbyKr5jk0Lnr6Y5V54L6RvO3R7Cr9lqjGfhfKdrFN4niNJDbYyKICwAxanT0zYksWzbl823Jj1tzTAAooZZaaKm4ZiuE3MTx0-latRtOknYzQzsU7xJSB00EV_G24UslOlAEl-8u9D-8wQbgMBGZSBee4TOlacuvE4iwVMlKZmyV5AozcBBQ-Z-tDmFjfpaeU0MXFO_Glnc56Fuh5hG_3RLIGCtTEmBzdH0WBORdCfC78mVbAYEj7wewLEwpRgI0VbTaq5jgPBkjrVrRS8oycoPH3yCTFrYbxfzv3X491yV-1Nw3o6bo69h9HsRA-ZHAd8bxd13d4-tLwHwc5dY6QAUIGnfUtBxt21lusftCFuqv9yOEPw5GD7U8My12lUNd5gRQU1_uSDfwtU7gWI2ZWFPymTMhbe9TA4j0FBXuBjApcBID3Kxg7Xfl7slP7rb-96MTeBcWUje19Lutvh2vhc5M6NfbnlB7HPFKpLgVMcC39uXTnRVzK5PUIFw5YhJUHeQWY8A0uIUXndZZi76O-qfbg4yLTmqbwRQ_Tc79t0X6wGwvV25kZ1S5AvzUbbHk23o5m42VD1MnSNREmQ6SIJ1oMgP0JCQtXxHq9X92skK_Pw_4m5pOF9WANzUm-VeN8iy4J8sGxOvMrcKMXE31_EMulYPV-UNvuzjoaD12RuiNYF6fwDDcqbcN1sVLIir6lw-zsLfWGheZdMt9InVX_ZpIiAP3jtzrTOFKrPxN_UQ_Pg0L-RX3B3-EeLSFdkr0Objq6_z8kI3P1fLl-0JeGlP7K4yfamoHVYR7fSa5k_EGmLyDbwqo0yjJHnRUdakoQw7Vq3H9r6d7_ORkLTpaZM08_h8QoAgBI4nO0e9KIjbvAwMAw85-v50wi7HizTdx7mxwv9N6pA-89U78zCGVHPuiNYdtCS87m1zoDOkWOmQxYFqrfJRgYWMh3sWbPm7qd--rDA9CMhMRlD_Ntj0rocpUMCe_rvSbTE1emGylrYj3nlWT6XVTu0PA7FRh4mYgpfBu7-zgtOmvKU5dGyYebmuj23QrAgbvkXinoUqd4116MIyP73IQt4DZmkhUFZGcrwLpv5XJ-6szSGgcVf5eoF3EjpcM0Bi9Z1XGqZfOnmaT3-tY6x7yN-GY0xH6BdddFpi4J-_abP_MdVrobEnJpJNyuWN57Vez_8jsMDU69mg1ODI76FzcuZvNxmG_Nm7-q4OriM8SeqPRDFdxEomb2XYE7OMbFujD0DWCxLQBQYwnRjlz8Y0ns6dYIGTd1oogzXDGHxz0qNHbARJB6zp6mrtHUwCXAj6_ZcwLIa7140m-5BBj6xbUQ_xt3sSgaQHoR6pxq2F5jz_rwCi0PWYyvEU4kgeUEIixm33S6RdGmr5XQ4-ENzbS42Foc1nKYYd5iiiUu-_6mFfI5TJYPEmFUFu2uS-F4curl5x8kJF2mpwh2MIzZKSceUPhztH_Al5-l4sbBCvO6sd9QFOtIm1bXZLIYAc3cqTnMCnOAMCFudxHqh0b0d0HH2sUBCghEsIgxfia8wRkONX3Kd7JSz7aZqdD1yAT8pb78bRLZaaRT2WKWHBf56rcUyAJ7iTMHYFE-1ph82Hx31_vFOjUPVJ6tCFAArvUDKyZF2kWob9ifmYP2yOINxISRzFIPxFWhS8J8ogcH0cSTH_EgaaMfKV9aCNelQ-FjQNT9xjwXA324rwdaMIvAARAZScBehm3dh6CV_NH0HdK8m_lFNu9YrkzrcLASEPnuuybjN3CiJQBxRRY" alt="Шазам">
+                    <h3>Шазам! Ярость богов</h3>
+                </div>
+				<div class="film-block" onclick="openModal('1+1')">
+                    <img src="https://kinopoisk-ru.clstorage.net/29u8NT357/d66fb9ojtw9/MngGTIzGJmaMzksqfgKJDUR3FeIJN6LncDR6-omx5qCzV5X9FGqZ_4Y8mZ7jr_DY7R1QJI6aEEiUrHaH-wlKK-cph5xbVfEmHM6bKuuWXZ-WosCxDjcwdrdivqwfIeqtP90OMJzmUncfo0hNcmhmz7rNVOcNSJMPRXxqHGtQF_30PASFw5CrYcCeDeN8wQFIFH3dp1-0oGcl9zh6Tn8lLv4ejznV6V541G3IwPI-L0Z6Q9VuwoUc2kgwLVDxUFQ99LEHQkydZuYLlkRuNAhBQRH3lGfc8CZjaHuydER_LK792cd_HGGYc5UkjwD2MuRPtIjRpYlOFREM9SEWMRlZPXNzC4yC2CdiRldPavzIhsGesZmm0HSrI-aw_HlOfiguuR9CvhwqFnDWLAiF8zllzzmPUiRGgNgXi7SnmPIUWjo2tsfBglOnK8pYAKGxzosJHHVVKto24eYjurt8yHikILyWjLQc7hu0ESrABbE16k_0DxNshoZTHExyL1n9HV8xMXCEAUrWZ25OHYtufQfFQFG4X-bXM6_moDs1MYg4Lmg-38U81KsVMlCpT4G8OCjFdYQdr4YI2VgBde2Y-JBdtH68jUuFF6HiA9ULb3CFwgARfd5imrtm5297PPuAdO2g_tXLPNKn3XtU4klMNrFlB7ICHCWJARRZBLBoUrrWkn47sILEhNjkK8DXxO52yoYJUvhRp9p8J-Lg9PvzT_Wu5P_dxDocJNIynWiMRHSwKE9yg9AgBIXRFYl3pVb3359xO3iPBQpY7msLH4MutUKJwNHyEWyYNGBg6Lt-PEYzqaD01Q360-mc8xejh8N9OK3EP0AVrESJUF4KtamSt5FdfT98gARLGadrThjJZH1KTg1c9Zbn2Xjq5uU9fv-DeaSoPpgCPt_rWLzU60eFcv4lyXvFE6hLSltRSPesnTFRlbL3MUwMy9UjqguVTy6-AEbKnb8cJJ69p6dpO_x9izVpp7ofj_feLtm6nuLBy702Z043TV5uz0US2oL8bZG6Ex98sfMIQ8lU46sLV0brvwfBi9L2l6OfM-EpbfQ-OwI2Lmh8EEYy32JVfRboRAI2ea_DsoKcqkUIFZrM_OgQM5aWfTB0SAsLniFiSlSGIfaDBEbRd5FkEPUtJC7y8_VOc2wm_djL_Ndu2_QZos5Kd3ftTvJEUKxJQd0RS30sEvZWFvA2doyNTRDl4oyZi2_9R4WOFz3eq1iy7e5levV1yHUv4j9TTHwa4F61k6MGDDK6bcF0B91ijIwRVY_9b5g30J38PzgPzgKXqecJH0shNQZGD1O-XqYWvSEo5nb6MgIxYaK1FgO8l2ac8llugEV2cq0Gt0wSZEXAXJSJuaUYe9wX-HB-A4UFUSQkyVyO5_SJCsYTOprjW_qiKKjw-jDCMWzu8hFNfFJjk_0W7AnEvbluz_OAmaVLjRhdgjNj0D1WWXb0f0AMxN8k4ozQi-r9B4XA3TFa5hD4KWLmPfJ8QXah7PTejDcVqhE7mWrICPx2ZYd6Clmlx4dSFAE_oJl_k5y69DuHCcHT7eELlYAm8MNAgtp-1aVW8yHgr78xc4s8YGP1mYA62qqbst7jRQA6OaENd8jVIMXG1VSIvePf-9RXuj-_A4FBXO5izJdHpneDwQUSdB5tUXhrKq76tDCE_uHithmMslKmEzwTYcGLsnHmDPMGEWCBiNzeATOjmDXfkDP4NgZMBd4mo4rUDuYxggiIlPIZ7th0Likuv7O5i7ckYTzewrocoR09n2KJQ_35KQ-ywpXkBA4bVgN1a1XxXpg0P71Pg0RUIGuNnAYkd4FJgV52kS0Su2Kq5T498Uz2KSN0H4v6my-dc5PiB469cO-FugsUqAMGmVJC_O4fMNse8Px0iICGnmfmwR0Gor5CCM7WOBDu0bgn4268vvqIdO3mNBtEtV-v1bOU5IHNvzMnBDoDEGCBDJlSyXsvFrhZ0Du6-MNJi1Xn5gDWSyn5AcQKFH-dbJOzIeQgsPGzC7ZmITUXi75fr5l_1C1Mzvc6r0N5hVLlzIYa14-87BsyUV6-MPiEwEZfYycJ2QNotk8Bw5yxWK9Q8mFj4ns-MYNzrGB-mwDxU2PeNZwjw4I08WhDtEwRIMQPn5RM92bVMJCR9jk2jsCA0yHhCdbGov0JwoUatVIuUbUmJy-ysPsDv2SktFPKuhSmkTRRIYAGPXelBr0DGqHCRZfXxbelEzHY1jHxOwcAxVuupM2fj6G5QMXIUjmSp1g9J6An83Q8BD0gp_ubxHOSaVs43uqGTffyqMj_z9Ptj0Yc1ATyLNjzHx37cDwPiIHY72dFkAzvvs7Gwpd1FW_XdekoJ3zz_wbxIWi2HMp02WJSu57sTM69cqJPO0sZIYVFmRGHcevd_tHfsbGwx4DDHuMtyRaDJHQAjg7XOtzv2_dmpy7_djsL82GgP1_DPJ9s2n9WqkUL8T3uh3iK3SwHiB2ZBfqolf_ZWbaxtU6MBlBt6g2ZB6s2T8SJkb7QIpnyJmZovnp0g3bgpH6UjzlaZx2436bLBDky7oSwiBipx4lbHQO8plFyUFb8OXGHDIteZuGEUYMud8dKy5e61-6TfeGoavC6OUs84-q7VMV-3eFU_pylh8x0sqBAcctQJw5AmRVIPWed-h4feHA2QsnJFKfrBlfNK3SIQYrbN14vUPNl5Cb8trADPSxpORUH_NKv1DNe5AnDP38ow7rE3OjLz1XWgPymV7lbXLS7eYpOQp-hro2Zjy74jk2AkfwSrlF4Jixnf7o8wX6vrvrdyL1eJ5vyHWWAwjryJUQxhd7qyY-cVQl3aVB30F55P3HKQI1eZaUE18SnfANLCdUyFqLX92PmJ3Uzs4v84aaxEcd6GWiatBuiDcT--C7NM0uWbkMEl9rLuukfOB4ZtP-wSoEF3W_shFQGK3VOC4ca8RAkHHfioCkwsTXOeOQos5yCtFOr2XXR4QlBuzIkRz0PE6gDSh2RTE" alt="Шазам">
+                    <h3>1 + 1<br>⁯</h3>
+                </div>
+				<div class="film-block" onclick="openModal('pad')">
+                    <img src="https://clck.ru/3JJQZQ" alt="Паддингтон">
+                    <h3>Приключения Паддингтона</h3>
+                </div>
+				<div class="film-block" onclick="openModal('pad2')">
+                    <img src="https://clck.ru/3JLSD8" alt="Паддингтон">
+                    <h3>Приключения Паддингтона 2</h3>
+                </div>
+				<div class="film-block" onclick="openModal('pad3')">
+                    <img src="https://clck.ru/3JLTeb" alt="Паддингтон">
+                    <h3>Приключения Паддингтона 3</h3>
+                </div>
+                <!-- Добавьте еще фильмы здесь -->
+            </section>
+            <section class="series">
+                <h2>Сериалы</h2>
+                <div class="series-block" onclick="openSeriesModal('rick-and-morty')">
+                    <img src="https://avatars.mds.yandex.net/get-entity_search/478540/859598940/S600xU_2x" alt="Обложка сериала Рик и Морти">
+                    <h3>Рик и Морти</h3>
+                </div>
+				<div class="series-block" onclick="openSeriesModal('death-note')">
+                    <img src="https://kinopoisk-ru.clstorage.net/l2z9q2390/bac488qKcWV/HoIccr25j2GIGdK-F6tT8LMj9Qzs5xb6zQE0-BYOAmmxub5cslmKjWwkp0TpZDZfSG9FSFNl0utOYZ3Z-PsWhYoSCCV5_hp1X57A6xUqhOP09PTJqjUDa8pF467Bxc5jvTPi1T2TgoZ0dTTUL3PhSph_Ul-Bp1X7ij0HnPr-Q1wayRd0uyGAJc3G3_6eYZlyY-3yQLkmXfUVQTLwlQ7IrvM255o1HA_AdPF11TkzoUcXMR-WSGnONA4xC8Z_tk6VVEtYcDrigOjJTp17VycWNGJq_Yo9bBIzXM73Md7Ei6H1O-jYu9SOzP7zddy_f64CEzlfkMYnwz9C_ktMsT8PnhRBX7q8IQGgDksevF2vkHphIzYDtG1TtpqGNjCQwUzjvr9m3PGXjgy2_f2UcLRrSV9xWt1F6QAyj7IFDzm2i9Hbw9i_sqEFZcqEXHeaLpg4qO0xibNuFb4dg3T13MjF4rB9ZJ66nc3PMrJ3FDH5YEhb8VoVBGTDNsJ8RQXw_gTVVEeW9z9vgm2KS50w0itf9a3o-Arxol79XQO-P11KyGb4e-Qash2OBj8yvRR99ybF2rkbHk2nyvFKt07O-XeJFB8L13I66QbuDcRfPhEhGDDla7iPeihd-lrG93rWAslp9LBmkvGTiY-5cjhUtDnriBM9VZeMoQ78gXuDwrp8D1tcBd66-GhI6E1CkbgQb1H3q6Q2hLIiG3waQre4mMcDanc3ppV6HUKF9nE9XfD4o0lS8ZhWTmcIc0q5BQF18QDQFc2XM_Mjx6pOyZU_kGbeN64s-Q15pBf7FcJ0MtdMgyk4PiWXclJOSbu5MFLx_aqPETDcG0eoRfzH-gNAODkMVhpLH3C_7waoxU5UOpmk1LboKflEPquc9FTLfz0ehwFl__krnTmUg4JyfnhVdfQryhEz01HBIQa9gf6BCTq2jNjSTtE1O2dGLgRH0TdQ4Fs36Cg6Tfvim3HUCT772YeK6nY_7ho83YaO_HazUTW4L0Jefppdh2aHO8w-SsB9tgPcW8OdPvmrjKuMQhf3l-PXs6TrfkD-Ih3-E8q3uB4JhG4--qGTOtJCzHHxtxl_MioEXbfakUYoBfUC8QzMs_mL1JXEl7A7YwElAcqQt5dqEzujZnTFPSrcOxQDs7XTwUwiOX6hHrNRikk-uXUfdrDuwh0_FdOI5gM-zX8Gz3kwg5VeTJZ6cyrJ5sXOV76eb1Hz6qK6Bfok2TGfAvK9E8-M6zyyLZ49VYqJP3n1nXdx5QmRP5fRTmSPNY2yDcc_uUyVFMteurMrwWSHwxa7VS-U_62icQO2rlU6Vs43fZQMQqj1OKfQc9VAzfqzuB-y-iqN1fIbGcZvRjINvssN8bjPm9ROlrXzKEDkgELYPZih23Pj43GNc-db952De36eiMRrsDhsUv8fz06x9TeQMbLnxVNzlVCOb8t7xbZCgrN3g5EUxli8sCmBbYkH2XcY5hOyJWI0C7YgUrsdQjq_XsRKIfPwqVB_VcUFM7t7mXl1LoHb_lifBG_LdYJ4ggC4sEQZksbctvThhquGytk0VGEb_mIivQX9YpS8Fo73cVUJD6W1uyyWuVQOxvp5OlU0cOOFE_JUXoHtxDWD_I5OeDqD0xxLHXV364hgSQnd9Bggln-m7DjHf6CVtJWO8DBQi8Qnd3fon3CQBok0-XjSufdoTFv7G1vJLMx6Rn4NQHq7i11TiZy2ve5N6AJCF_tYLBQ8a2l1xbQqk3UQyfcxU0CDJzT4IZNzk4cGtjM91TV5qQFXNl8eiGaGNoxxw0B4v05Vnw_U_3coxalFBxY10GsbcmStN4C16xr8FgB79tRPzOd5e61dNVMAxP17cdN4N2dN2jdZEM6vCvZCfkUJfftPGVWNkX83ZI_pzk9S-F2mWXCoZfBBvOTb_hOLODdQw0Ov9zvsW3GRgoh_ef-UvXNlgBbw19OPpQc9Q_aLyXL7gJhTxJByd-tFa0ZD1jdeptb_7qq9ybIs0nMXgzgw3otLpXC45Nf81QUFcjO4ETB6oUhQMJgQDuwNN0P-RgQ1dwaU207RvPcmRG3ADBU1kCFT_u0gvcjzqlE02wE6MRuDBSqzeyZf-tSAB_Q7MFf9v2oC0LfS2Mkpg7aKO8YF8DrMUZOJkTc8I4ikQIPecxmhln-iojBK-mIWvNqKP3rXywpg-D1nXnITwsG3tLTaP3-jyp0229ANqcy2xrPKTj35wNUdBF27OqgKLcdMHrxRZ9E6qCY9TLMrmjXcg3i_U4aCbnM2IRj00QsA_7X63P76ZoQSfprRxmQHvkl5CYH9d06aFc_W-3NnjG3Pipdz0K5Q-KThd0j5b9G5W8_9MJ0GgCB5-GHXOZkBQPU0uNU4MO4A1b9aVQmlB7sFfwWKvbNG3N5KULS1aoCliMjVN5XoEb8t6niBs28WOh8CuLtVgIKiMXboF7sYyM2z-HKZfvimCZJ_lVhJZ0U-zH_KDbFxQRTbiRU_uGKOqUBAXrxVotAzbal4QHTknPQfwXUwXsuN4fh5JxD8nY9EtvH60vG5qMdVMlUQBSMLN8x2CA75ssSYWMJY83SmimbByBDz2a8YfS3j_0FybNH9XQN0cxlMDGOxMylTdVPHhbXychN99OoJ3nObFEUrzPRHsQENcPQOnpZBHXK0JoFlRIgXe1gimngsoP1EM6udtlKJNTnWQASofnbkHzjVD0V2ufPbcHSqgZnxXR8NJQt6TPPKhLxwh1TYS9g8cy6J7I9HkvvYp940ZipyxHanVraYRbWzVwqDY7b2IJL010uOPXO61fU9KgQfOhrfBGvAeUMzjE-7_wYY3c9e9bArBuvPhlf-Hm4UNWtg-EG0bhczX81zMd1DzGZ58S8S8dONRL1zM5q9u6nB1r0RHYlhyvKJO8EHuvGDWpIJFL78KEZjSk4Z-BBp337tbbpJtWPVPhLAv_pQDAun-LgkV7vcT4E7vbuX9nLpxRX_WNCMrwS7zU" alt="Обложка Тетради смерти">
+                    <h3>Тетрадь смерти</h3>
+                </div>
+                <!-- Добавьте еще сериалы здесь -->
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 BendyCinema. Все права защищены. Позвонить: +7 (993) 108-74-02</p>
+        </footer>
+    </div>
+
+    <!-- Модальное окно для фильма -->
+    <div id="modal-1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <iframe id="video-1" src="https://vkvideo.ru/video_ext.php?oid=-20286388&id=456239942&hd=1" width="640" height="360" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+	<div id="modal-shazam" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <iframe id="video-1" src="https://vkvideo.ru/video_ext.php?oid=320272349&id=456239420&hd=2&hash=acb65ae70a64f587" width="640" height="360" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+	<div id="modal-shazam2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <iframe id="video-1" src="https://vkvideo.ru/video_ext.php?oid=-213377389&id=456239865&hd=2" width="640" height="360" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+	<div id="modal-1+1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <iframe id="video-1" src="https://vkvideo.ru/video_ext.php?oid=-229069195&id=456239137&hd=2" width="640" height="360" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+	<div id="modal-pad" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <iframe id="video-1" src="https://vk.com/video_ext.php?oid=-93831800&id=171509880&hd=1" width="640" height="360" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+	<div id="modal-pad2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <iframe width="640" height="360" src="https://dzen.ru/embed/v8eJE58MnMSE?from_block=partner&from=zen&mute=0&autoplay=0&tv=0" allow="autoplay; fullscreen; accelerometer; gyroscope; picture-in-picture; encrypted-media" data-testid="embed-iframe" frameborder="0" scrolling="no" allowfullscreen></iframe>
+        </div>
+    </div>
+		<div id="modal-pad" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <iframe id="video-1" src="https://vkvideo.ru/video_ext.php?oid=-229813734&id=456239018&hd=1" width="640" height="360" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Модальное окно для Рика и Морти -->
+    <div id="series-modal-rick-and-morty" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <select id="season-select-rick-and-morty">
+                <option value="1-7">Сезон 1-7</option>
+            </select>
+            <select id="episode-select-rick-and-morty">
+                <option value="all">Все серии</option>
+            </select>
+            <iframe id="series-iframe-rick-and-morty" width="640" height="360" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen src="https://vkvideo.ru/video_ext.php?oid=-229424497&id=456239283&hd=1"></iframe>
+        </div>
+    </div>
+	<div id="series-modal-death-note" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <select id="season-select-rick-and-morty">
+                <option value="1-2">Сезон 1-2</option>
+            </select>
+            <select id="episode-select-rick-and-morty">
+                <option value="all">Все серии</option>
+            </select>
+            <iframe id="series-iframe-death-note" width="640" height="360" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen src="https://vkvideo.ru/video_ext.php?oid=-204116075&id=456239796&hd=1"></iframe>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
