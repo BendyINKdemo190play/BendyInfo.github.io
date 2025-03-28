@@ -31,7 +31,7 @@ document.querySelectorAll('.modal-content select').forEach(select => {
         if (Voice === "j") {
             iframe.src = "https://vkvideo.ru/video_ext.php?oid=-225959461&id=456239541&hd=1";
         else if (Voice === "r")
-            iframe.src = "https://vkvideo.ru/video_ext.php?oid=-225959461&id=456239541&hd=1";
+            iframe.src = "https://vkvideo.ru/video_ext.php?oid=-229894036&id=456239017&hd=1";
         }
         // Добавьте другие эпизоды и сезоны здесь
     };
