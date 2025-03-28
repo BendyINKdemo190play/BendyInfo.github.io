@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сломанная BendyTube</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000; /* Черный фон */
+            font-family: "Courier New", monospace;
+            color: #00ff00; /* Зеленый текст для атмосферы */
+            overflow: hidden;
+        }
+
+        .modal {
+            position: absolute;
+            width: 300px;
+            height: 150px;
+            background-color: #111; /* Темное окно */
+            border: 2px solid #00ff00; /* Зеленая рамка */
+            box-shadow: 0 0 10px #00ff00;
+            padding: 10px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .modal-header {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .modal-body {
+            font-size: 12px;
+        }
+
+        .loading-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #333; /* Темный фон полосы загрузки */
+            margin-top: 10px;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: #00ff00; /* Зеленая полоса прогресса */
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    // Функция для создания модальных окон
+    function createModal() {
+        const modal = document.createElement("div");
+        modal.classList.add("modal");
+
+        // Случайное положение окна
+        modal.style.top = Math.random() * (window.innerHeight - 150) + "px";
+        modal.style.left = Math.random() * (window.innerWidth - 300) + "px";
+
+        // Содержимое окна
+        modal.innerHTML = `
+          <div class="modal-header">
+            Загрузка... <span style="font-size: 16px; cursor: pointer;">×</span>
+            <span style="font-size: 16px; cursor: pointer;">-</span>
+            <span style="font-size: 16px; cursor: pointer;" onclick="cancelModal(this)">Отмена</span>
+          </div>
+          <div class="modal-body">Пожалуйста, подождите.</div>
+          <div class="loading-bar"><div class="progress"></div></div>
+        `;
+
+        document.body.appendChild(modal);
+
+        // Эффект загрузки
+        const progressBar = modal.querySelector(".progress");
+        let progress = 0;
+
+        const interval = setInterval(() => {
+            progress += Math.random() * 10; // Увеличиваем прогресс случайным образом
+            progressBar.style.width = progress + "%";
+
+            if (progress >= 100) {
+                clearInterval(interval);
+
+                // Меняем текст на ошибку с вероятностью 50%
+                if (Math.random() < 0.5) {
+                    modal.querySelector(".modal-header").textContent = "Ошибка!";
+                    modal.querySelector(".modal-body").textContent =
+                        "Не удалось завершить операцию.";
+                    progressBar.style.backgroundColor = "#ff0000"; // Красная полоса
+                } else {
+                    modal.querySelector(".modal-header").textContent = "Завершено!";
+                    modal.querySelector(".modal-body").textContent = "Операция успешно завершена.";
+                }
+            }
+        }, Math.random() * 500 + 200); // Рандомная скорость загрузки
+    }
+
+    // Функция для отмены операции
+    function cancelModal(span) {
+        const modal = span.closest(".modal");
+        modal.remove();
+
+        // Делаем сайт еще более жутким
+        document.body.style.background = "url('https://example.com/distorted.jpg')"; // Подставьте ссылку на искаженное изображение
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundPosition = "center";
+
+        // Создаем еще больше окон
+        for (let i = 0; i < 10; i++) {
+            createModal();
+        }
+
+        // Ломаем сайт
+        setTimeout(() => {
+            document.body.innerHTML = "";
+            document.body.style.background = "red";
+            const errorText = document.createElement("h1");
+            errorText.textContent = "САЙТ СЛОМАН";
+            errorText.style.color = "white";
+            errorText.style.position = "absolute";
+            errorText.style.top = "50%";
+            errorText.style.left = "50%";
+            errorText.style.transform = "translate(-50%, -50%)";
+            document.body.appendChild(errorText);
+        }, 5000);
+    }
+
+    // Создаем окна каждые несколько секунд
+    setInterval(createModal, Math.random() * 3000 + 1000);
+
+    // Функция для скачивания файла
+    function downloadFile() {
+        const element = document.createElement("a");
+        const fileContent = "Это пустой файл.";
+        const blob = new Blob([fileContent], { type: "text/plain" });
+        element.href = URL.createObjectURL(blob);
+        element.download = "empty_file.txt"; // Имя файла
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    }
+
+    // Скачиваем файл в случайный момент времени
+    setTimeout(downloadFile, Math.random() * 15000 + 5000); // Через случайное время от 5 до 20 секунд
+</script>
+
+</body>
+</html>
