@@ -5,24 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BendyCinema | Поддержка</title>
     <style>
+        :root {
+            --mc-dark: #1a1a1a;
+            --mc-border: #4d4d4d;
+            --mc-text: #e6e6e6;
+            --mc-accent: #ff5555;
+        }
+
         body {
-    background: black;
-    color: var(--mc-text);
-    font-family: 'Monocraft', monospace;
-    line-height: 1.6;
-    margin: 0;
-    padding: 20px;
-}
-        .about, h3 {
-    border-left: 4px solid var(--mc-accent);
-    padding-left: 20px;
-    margin: 30px 0;
-    color: whit;
-}
+            background: linear-gradient(to bottom right, #0a0a0a 25%, #1f1f1f), url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR4Ae3OQQEAAAgDoJv5QW4JyCoJHSQBJkCAAAECBAgQIECAAAECBAYVeAI1hAH1B+UhAAAAAElFTkSuQmCC');
+            color: var(--mc-text);
+            font-family: 'Monocraft', monospace;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 4px solid var(--mc-border);
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 15px rgba(255, 85, 85, 0.3);
+        }
+
+        h3 {
+            color: var(--mc-accent);
+            font-size: 1.8em;
+            text-shadow: 2px 2px #000;
+            border-left: 4px solid var(--mc-accent);
+            padding-left: 20px;
+        }
+
+        p {
+            margin-top: 20px;
+        }
+
+        p span {
+            display: block;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
-  <body>
-    <h3>Что делать если нашли свой фильм на сайте без разрешения на размешение?</h3>
-<p>1. Открываем фильм<br>2. Нажмаем на название сверху в видеоплеере<br>3. Подаем жалобу на автора который выложил фильм в ВК<br>4. Наслаждаемся пока на сайте не появиться этот же фильм от другого автора из ВК</p>
-  </body>
+<body>
+    <div class="container">
+        <h3>Что делать, если нашли свой фильм на сайте без разрешения на размещение?</h3>
+        <p>
+            <span>1. Открываем фильм</span>
+            <span>2. Нажимаем на название сверху в видеоплеере</span>
+            <span>3. Подаем жалобу на автора, который выложил фильм в ВК</span>
+            <span>4. Наслаждаемся, пока на сайте не появится этот же фильм от другого автора из ВК</span>
+        </p>
+    </div>
+</body>
 </html>
