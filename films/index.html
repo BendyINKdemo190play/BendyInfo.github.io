@@ -24,6 +24,10 @@
             <input type="text" id="search-input" placeholder="Поиск...">
             <section class="films" id="films-section">
                 <h2>Фильмы:</h2>
+  <div class="film-block" onclick="openModal('minecraft')">
+                    <img src="https://avatars.mds.yandex.net/get-kinopoisk-image/10812607/7ae661a4-8d36-4fad-9278-9b63655c7eb3/orig" alt="Бриллиантовая рука">
+                    <h3>Майнкрафт в кино</h3>
+                </div>
                 <div class="film-block" onclick="openModal('1')">
                     <img src="https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/a419d20d-4ae6-4c7c-91b3-c38ef9ca1ffe/1920x" alt="Бриллиантовая рука">
                     <h3>Бриллиантовая рука</h3>
@@ -109,6 +113,13 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">×</span>
             <iframe width="640" height="360" src="https://dzen.ru/embed/v8eJE58MnMSE?from_block=partner&from=zen&mute=0&autoplay=0&tv=0" allow="autoplay; fullscreen; accelerometer; gyroscope; picture-in-picture; encrypted-media" data-testid="embed-iframe" frameborder="0" scrolling="no" allowfullscreen></iframe>
+        </div>
+    </div>
+    </div>
+	<div id="modal-minecraft" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <iframe width="640" height="360" src="https://vk.com/video_ext.php?oid=-79614896&id=456241608&hd=1" data-testid="embed-iframe" frameborder="0" scrolling="no" allowfullscreen></iframe>
         </div>
     </div>
 	<div id="modal-sen" class="modal">
