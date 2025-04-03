@@ -27,12 +27,6 @@ document.querySelectorAll('.modal-content select').forEach(select => {
             iframe.src = "https://vkvideo.ru/video_ext.php?oid=-229424497&id=456239283&hd=1";
         }
         
-        const iframe = document.getElementById('sen');
-        if (Voice === "j") {
-            iframe.src = "https://vkvideo.ru/video_ext.php?oid=-225959461&id=456239541&hd=1";
-        else if (Voice === "r")
-            iframe.src = "https://vkvideo.ru/video_ext.php?oid=-229894036&id=456239017&hd=1";
-        }
         // Добавьте другие эпизоды и сезоны здесь
     };
 });
